@@ -2,6 +2,8 @@
 #include <std_msgs/String.h>
 #include <time.h>
 
+#include <boost/algorithm/string/replace.hpp>
+
 int ReturnChatCommand(std::string cmd)
 {
   if(cmd == "/exit")
@@ -25,8 +27,10 @@ int main(int argc, char **argv)
   std::string my_name;
   std::string chat_message;
 
-  std::cout << "InPut your name : ";
-  std::cin >> my_name;
+  std::cout << "Input your name : ";
+
+  getline(std::cin, my_name);
+  boost::replace_all(my_name, " ", "_");
 
   std::string time_stamp = std::to_string(time_now);
   std::string node_name = "chatter_publisher_node_" + my_name + "_" + time_stamp;
@@ -37,6 +41,8 @@ int main(int argc, char **argv)
   ros::Publisher publisher_chatter = n.advertise<std_msgs::String>("chatter", 1000);
 
   ros::Rate loop_rate(10);
+
+  boost::replace_all(my_name, "_", " ");
 
   while(ros::ok())
   {
