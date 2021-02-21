@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 
     std::cout << "send message : ";
 
-    std::cin >> chat_message;
+    getline(std::cin, chat_message);
 
     std::cout << std::endl;
 
