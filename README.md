@@ -15,10 +15,17 @@ ROS  chatting Program
   
 ### Run
 
-```bash
-rosrun chatter chatter_publisher_node
-```
+Set ROS_MASTER_URI and ROS_HOSTNAME before use
 
-```bash
-rosrun chatter chatter_subscriber_node
-```
+Reference http://wiki.ros.org/ROS/NetworkSetup
+
+- Run chatter_publisher_node
+
+  ```bash
+  rosrun chatter chatter_publisher_node
+  ```
+
+- Run chatter_subscriber_node
+  ```bash
+  rosrun chatter chatter_subscriber_node
+  ```
