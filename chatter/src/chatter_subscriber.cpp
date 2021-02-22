@@ -20,7 +20,7 @@ std::string GetTimeNow()
 
 void ChatterCallback(const std_msgs::String::ConstPtr& msg)
 {
-  std::cout << "[" << GetTimeNow() << "] : " << msg->data.c_str() << std::endl;
+  std::cout << "[" << GetTimeNow() << "] " << msg->data.c_str() << std::endl;
 }
 
 int main(int argc, char **argv)
