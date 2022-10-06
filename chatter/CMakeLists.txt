@@ -9,6 +9,7 @@ project(chatter)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  message_generation
   std_msgs
 )
 
@@ -53,11 +54,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+  FILES
+  ChattMsg.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -67,10 +67,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -103,8 +103,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES chatter
-#  CATKIN_DEPENDS roscpp std_msgs
+  LIBRARIES
+  CATKIN_DEPENDS roscpp message_generation std_msgs
 #  DEPENDS system_lib
 )
 
@@ -124,6 +124,16 @@ target_link_libraries(chatter_publisher_node ${catkin_LIBRARIES})
 
 add_executable(chatter_subscriber_node src/chatter_subscriber.cpp)
 target_link_libraries(chatter_subscriber_node ${catkin_LIBRARIES})
+
+
+add_executable(chatter_service_server_node src/chatter_service_server.cpp)
+add_dependencies(chatter_service_server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(chatter_service_server_node ${catkin_LIBRARIES})
+
+add_executable(chatter_service_client_node src/chatter_service_client.cpp)
+add_dependencies(chatter_service_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(chatter_service_client_node ${catkin_LIBRARIES})
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
