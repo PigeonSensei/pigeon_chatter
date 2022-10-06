@@ -25,13 +25,10 @@ int main(int argc, char **argv)
   std::string my_name;
   std::string chat_message;
 
-  std::cout << "Input your name : ";
-
-  getline(std::cin, my_name);
-  boost::replace_all(my_name, " ", "_");
-
-  ros::init(argc, argv, "chatter_publisher_node", ros::init_options::AnonymousName);
+  ros::init(argc, argv, "chatter_publisher_parameter_node", ros::init_options::AnonymousName);
   ros::NodeHandle n;
+
+  n.param<std::string>("Name", my_name,"Non");
 
   ros::Publisher publisher_chatter = n.advertise<std_msgs::String>("chatter", 1000);
 

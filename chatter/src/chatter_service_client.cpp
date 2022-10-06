@@ -35,10 +35,7 @@ int main(int argc, char **argv)
   getline(std::cin, my_name);
   boost::replace_all(my_name, " ", "_");
 
-  std::string time_stamp = std::to_string(time_now);
-  std::string node_name = "chatter_service_client_node_" + my_name + "_" + time_stamp;
-
-  ros::init(argc, argv, node_name);
+  ros::init(argc, argv, "chatter_service_client_node", ros::init_options::AnonymousName);
   ros::NodeHandle n;
 
   ros::ServiceClient service_client_chatt_msg = n.serviceClient<chatter::ChattMsg>("chatt_msg");

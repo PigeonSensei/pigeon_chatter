@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+<param name="Name" value="Pigeon" type="string"/>
+
+<!--rosrun chatter chatter_publisher_parameter_node-->
+<node pkg="chatter" type="chatter_publisher_parameter_node" name="chatter_publisher_parameter_node" respawn="false" output="screen"/>
+
+</launch>

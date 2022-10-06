@@ -25,21 +25,7 @@ void ChatterCallback(const std_msgs::String::ConstPtr& msg)
 
 int main(int argc, char **argv)
 {
-  uid_t user_id;
-  struct passwd *user_pw;
-
-  user_id = getuid();
-  user_pw = getpwuid(user_id);
-
-  std::string my_name = user_pw->pw_name;
-
-  time_t time_now;
-  time_now = time(NULL);
-
-  std::string time_stamp = std::to_string(time_now);
-  std::string node_name = "chatter_subscriber_node_" + my_name + "_" + time_stamp; 
-
-  ros::init(argc, argv, node_name);
+  ros::init(argc, argv, "chatter_subscriber_node", ros::init_options::AnonymousName);
   ros::NodeHandle n;
 
   ros::Subscriber subscriber_chatter = n.subscribe("chatter", 1000, ChatterCallback);

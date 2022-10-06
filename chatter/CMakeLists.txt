@@ -134,6 +134,9 @@ add_executable(chatter_service_client_node src/chatter_service_client.cpp)
 add_dependencies(chatter_service_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(chatter_service_client_node ${catkin_LIBRARIES})
 
+add_executable(chatter_publisher_parameter_node src/chatter_publisher_parameter.cpp)
+target_link_libraries(chatter_publisher_parameter_node ${catkin_LIBRARIES})
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

@@ -3,7 +3,7 @@
 #include <time.h>
 #include <pwd.h>
 
-#include "chatter/ChattMsg.h"1
+#include "chatter/ChattMsg.h"
 
 std::string GetTimeNow()
 {
@@ -32,21 +32,7 @@ bool ChattMsgServiceCallback(chatter::ChattMsg::Request &req,
 
 int main(int argc, char **argv)
 {
-  uid_t user_id;
-  struct passwd *user_pw;
-
-  user_id = getuid();
-  user_pw = getpwuid(user_id);
-
-  std::string my_name = user_pw->pw_name;
-
-  time_t time_now;
-  time_now = time(NULL);
-
-  std::string time_stamp = std::to_string(time_now);
-  std::string node_name = "chatter_service_server_node_" + my_name + "_" + time_stamp; 
-
-  ros::init(argc, argv, node_name);
+  ros::init(argc, argv, "chatter_service_server_node", ros::init_options::AnonymousName);
   ros::NodeHandle n;
 
   ros::Rate loop_rate(10);
